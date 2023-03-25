@@ -5,8 +5,8 @@ import { Input } from 'components/Filter/Filter';
 import styled from 'styled-components';
 
 const AddContactSchema = Yup.object().shape({
-    name: Yup.string(),
-    number: Yup.number()
+    name: Yup.string().required(),
+    number: Yup.number().required()
 })
 
 export const ContactForm = ({addContact}) => {
@@ -40,7 +40,7 @@ export const ContactForm = ({addContact}) => {
             value={name}
             onChange={handleChange}
           />
-          <ErrorMessage name="name" />
+          <ErrorMessage component="div" name="name" />
 
           <LabelStyled htmlFor="number">Phone Number</LabelStyled>
           <Input
@@ -50,7 +50,7 @@ export const ContactForm = ({addContact}) => {
             value={number}
             onChange={handleChange}
           />
-          <ErrorMessage name="number" />
+          <ErrorMessage component="div" name="number" />
 
           <AddButton type="submit">Add to contacts</AddButton>
         </Form>
