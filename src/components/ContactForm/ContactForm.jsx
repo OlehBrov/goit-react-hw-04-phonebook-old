@@ -1,35 +1,34 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
-import { Component } from 'react';
+import { useState } from 'react';
 import { Input } from 'components/Filter/Filter';
 import styled from 'styled-components';
-// import { AddContactSchema } from 'components/Validation/Validation';
 
 const AddContactSchema = Yup.object().shape({
     name: Yup.string(),
     number: Yup.number()
 })
 
-export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+export const ContactForm = ({addContact}) => {
+  
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+ const handleSubmit = (values, {resetForm}) => {
+      addContact({name, number});
+   setName('');
+   setNumber('')
   };
 
-  handleSubmit = (values, {resetForm}) => {
-      this.props.addContact(this.state);
-     this.setState({ name: '', number: '' });
-  };
-
-  handleChange = e => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    if (name === 'name') setName(value)
+    if(name === 'number') setNumber(value)
   };
-  render() {
-    return (
+  return (
       <Formik
        initialValues={{ name: '', number: '' }}
-        onSubmit={this.handleSubmit}
+        onSubmit={handleSubmit}
         validationSchema={AddContactSchema}
       >
         <Form>
@@ -38,8 +37,8 @@ export class ContactForm extends Component {
             id="name"
             name="name"
             placeholder="Enter name"
-            value={this.state.name}
-            onChange={this.handleChange}
+            value={name}
+            onChange={handleChange}
           />
           <ErrorMessage name="name" />
 
@@ -48,8 +47,8 @@ export class ContactForm extends Component {
             id="number"
             name="number"
             placeholder="Enter phone number"
-            value={this.state.number}
-            onChange={this.handleChange}
+            value={number}
+            onChange={handleChange}
           />
           <ErrorMessage name="number" />
 
@@ -57,8 +56,9 @@ export class ContactForm extends Component {
         </Form>
       </Formik>
     );
-  }
+
 }
+
 
 
 const LabelStyled = styled.label`
@@ -72,6 +72,3 @@ const AddButton = styled.button`
   cursor: pointer;
 `
 
-const FormError = styled(ErrorMessage)`
-  display: block;
-`
