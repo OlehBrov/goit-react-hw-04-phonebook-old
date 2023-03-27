@@ -7,7 +7,7 @@ import { PhonebookStyled } from './App.styled';
 
 
 
-export function App() {
+export const App = () => {
   const [contacts, setContacts] = useState([]);
   const [searchFilter, setSearchFilter] = useState('');
   const [firstLoad, setFirstLoad] = useState(true);
