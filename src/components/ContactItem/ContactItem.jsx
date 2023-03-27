@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactItem = props => {
+  
   return (
     <ListItem key={props.id}>
       Name: {props.name} Phone: {props.number}
