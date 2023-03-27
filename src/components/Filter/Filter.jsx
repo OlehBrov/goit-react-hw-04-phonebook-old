@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { FilterStyled } from './Filter.styled';
 
-export function Filter({contacts, filterContacts }) {
+export function Filter({ contacts, filterContacts }) {
   const [filter, setFilter] = useState('');
 
   const handleChange = e => {

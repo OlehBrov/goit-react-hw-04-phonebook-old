@@ -5,7 +5,6 @@ import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import { PhonebookStyled } from './App.styled';
 
-
 export function App() {
   const [contacts, setContacts] = useState([]);
   const [searchFilter, setSearchFilter] = useState('');
@@ -48,8 +47,6 @@ export function App() {
 
   const onDeleteContact = id => {
     setContacts(contacts.filter(el => el.id !== id));
-    // localStorage.setItem('local-contacts', JSON.stringify(contacts));
-    // localStorage.setItem('local-contacts', JSON.stringify(contacts.filter(el => el.id !== id)));
   };
   return (
     <PhonebookStyled>

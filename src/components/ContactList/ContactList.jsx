@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export function ContactList({ contactList, filterQuery, onDeleteContact }) {
-
   const [contacts, setContacts] = useState(contactList);
   useEffect(() => {
-    setContacts(contactList)
-  }, [contactList])
+    setContacts(contactList);
+  }, [contactList]);
 
   const contactsToRender = (contacts, filterQuery) => {
     let searchQuery = filterQuery.toString().toLowerCase();
@@ -19,7 +18,6 @@ export function ContactList({ contactList, filterQuery, onDeleteContact }) {
       });
     }
   };
-
 
   return (
     <List>
@@ -35,7 +33,6 @@ export function ContactList({ contactList, filterQuery, onDeleteContact }) {
     </List>
   );
 }
-
 
 const List = styled.ul`
   list-style: none;
